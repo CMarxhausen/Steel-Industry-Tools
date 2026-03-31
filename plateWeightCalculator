@@ -1,0 +1,128 @@
+#define function for SA516-70
+def calculate_steel_plate_weight_sa516(length_in, width_in, height_in):
+    inches_to_feet = 1 / 12
+    length_ft = length_in * inches_to_feet
+    width_ft = width_in * inches_to_feet
+    height_ft = height_in * inches_to_feet
+    
+    volume_cubic_ft = length_ft * width_ft * height_ft
+    reference_weight_lb = 40.8384
+    reference_length_in = 12
+    reference_width_in = 12
+    reference_height_in = 1
+    
+    reference_volume_cubic_ft = (reference_length_in * inches_to_feet) * (reference_width_in * inches_to_feet) * (reference_height_in * inches_to_feet)
+    weight_per_cubic_ft = reference_weight_lb / reference_volume_cubic_ft
+    plate_weight_lb = weight_per_cubic_ft * volume_cubic_ft
+    
+    return plate_weight_lb
+
+#define function for 300 series stainless
+def calculate_steel_plate_weight_300_series(length_in, width_in, height_in):
+    inches_to_feet = 1 / 12
+    length_ft = length_in * inches_to_feet
+    width_ft = width_in * inches_to_feet
+    height_ft = height_in * inches_to_feet
+    
+    volume_cubic_ft = length_ft * width_ft * height_ft
+    reference_weight_lb = 41.184
+    reference_length_in = 12
+    reference_width_in = 12
+    reference_height_in = 1
+    
+    reference_volume_cubic_ft = (reference_length_in * inches_to_feet) * (reference_width_in * inches_to_feet) * (reference_height_in * inches_to_feet)
+    weight_per_cubic_ft = reference_weight_lb / reference_volume_cubic_ft
+    plate_weight_lb = weight_per_cubic_ft * volume_cubic_ft
+    
+    return plate_weight_lb
+
+#define function for 400 series stainless
+def calculate_steel_plate_weight_400_series(length_in, width_in, height_in):
+    inches_to_feet = 1 / 12
+    length_ft = length_in * inches_to_feet
+    width_ft = width_in * inches_to_feet
+    height_ft = height_in * inches_to_feet
+    
+    volume_cubic_ft = length_ft * width_ft * height_ft
+    reference_weight_lb = 40.521
+    reference_length_in = 12
+    reference_width_in = 12
+    reference_height_in = 1
+    
+    reference_volume_cubic_ft = (reference_length_in * inches_to_feet) * (reference_width_in * inches_to_feet) * (reference_height_in * inches_to_feet)
+    weight_per_cubic_ft = reference_weight_lb / reference_volume_cubic_ft
+    plate_weight_lb = weight_per_cubic_ft * volume_cubic_ft
+    
+    return plate_weight_lb
+#define function for 387-11
+def calculate_steel_plate_weight_SA_387_11(length_in, width_in, height_in):
+    inches_to_feet = 1 / 12
+    length_ft = length_in * inches_to_feet
+    width_ft = width_in * inches_to_feet
+    height_ft = height_in * inches_to_feet
+    
+    volume_cubic_ft = length_ft * width_ft * height_ft
+    reference_weight_lb = 41.76
+    reference_length_in = 12
+    reference_width_in = 12
+    reference_height_in = 1
+    
+    reference_length_ft = reference_length_in * inches_to_feet
+    reference_width_ft = reference_width_in * inches_to_feet
+    reference_height_ft = reference_height_in * inches_to_feet
+    
+    reference_volume_cubic_ft = reference_length_ft * reference_width_ft * reference_height_ft
+    weight_per_cubic_ft = reference_weight_lb / reference_volume_cubic_ft
+    plate_weight_lb = weight_per_cubic_ft * volume_cubic_ft
+    
+    return plate_weight_lb
+
+
+def main():
+    print("Plate Weight Calculator")
+    
+    while True:
+        while True:  # Loop until a valid choice is made
+            print("Select the type of plate:")
+            print("1. SA-516-70 Plate")
+            print("2. 300 Series Stainless Plate")
+            print("3. 400 Series Stainless Plate")
+            print("4. SA-357-11 Plate")
+        
+            choice = input("Enter your choice (1, 2, 3, or 4): ")
+        
+            if choice in ['1', '2', '3', '4']:
+                break  # Exit the loop if a valid choice is made
+            else:
+                print("Invalid choice. Please enter 1, 2, 3, or 4.")
+
+        try:
+            length_in = float(input("\nEnter the length of the plate in inches: "))
+            width_in = float(input("Enter the width of the plate in inches: "))
+            height_in = float(input("Enter the height of the plate in inches: "))
+        
+            if choice == '1':
+                weight = calculate_steel_plate_weight_sa516(length_in, width_in, height_in)
+                material_name = "SA-516-70 Plate"
+            elif choice == '2':
+                weight = calculate_steel_plate_weight_300_series(length_in, width_in, height_in)
+                material_name = "300 Series Stainless Plate"
+            elif choice == '3':
+                weight = calculate_steel_plate_weight_400_series(length_in, width_in, height_in)
+                material_name = "400 Series Stainless Plate"
+            elif choice == '4':
+                weight = calculate_steel_plate_weight_SA_387_11(length_in, width_in, height_in)
+                material_name = "SA-357-11 Plate"
+        
+            print(f"\nThe weight of the {material_name} is {weight:.2f} pounds.")
+    
+        except ValueError:
+            print("Please enter valid numerical values for the dimensions.")
+    
+        repeat = input("\nDo you want to calculate the weight of another plate? (y/n)").lower()
+        if repeat != 'y':
+            print("Goodbye.")
+            break
+
+if __name__ == "__main__":
+    main()
